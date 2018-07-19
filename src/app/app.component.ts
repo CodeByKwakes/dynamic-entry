@@ -1,3 +1,4 @@
+import { MessageTemplateBase } from './message-template-base';
 import { Component, ViewChild, ViewContainerRef, ComponentFactoryResolver, ComponentRef } from '@angular/core';
 import { MessageComponent } from './message/message.component';
 
@@ -8,13 +9,13 @@ import { MessageComponent } from './message/message.component';
 })
 export class AppComponent {
   title = 'app';
-  componentRef: ComponentRef<any>;
+  componentRef: ComponentRef<MessageTemplateBase>;
   @ViewChild('messagecontainer', { read: ViewContainerRef }) entry: ViewContainerRef;
   constructor(private resolver: ComponentFactoryResolver) { }
 
-  createComponent(message?) {
+  createComponent(message?: string) {
     this.entry.clear();
-    const factory = this.resolver.resolveComponentFactory(MessageComponent);
+    const factory = this.resolver.resolveComponentFactory<MessageTemplateBase>(MessageComponent);
     this.componentRef = this.entry.createComponent(factory);
     this.componentRef.instance.message = message;
   }
