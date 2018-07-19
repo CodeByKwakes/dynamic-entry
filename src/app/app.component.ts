@@ -12,7 +12,7 @@ export class AppComponent {
   @ViewChild('messagecontainer', { read: ViewContainerRef }) entry: ViewContainerRef;
   constructor(private resolver: ComponentFactoryResolver) { }
 
-  createComponent(message) {
+  createComponent(message?) {
     this.entry.clear();
     const factory = this.resolver.resolveComponentFactory(MessageComponent);
     this.componentRef = this.entry.createComponent(factory);

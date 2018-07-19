@@ -6,7 +6,14 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./message.component.css']
 })
 export class MessageComponent implements OnInit {
-  @Input() message: string;
+  private _message: string;
+  public get message(): string {
+    return this._message;
+  }
+  @Input()
+  public set message(value: string) {
+    this._message = value || '';
+  }
 
   constructor() { }
 
