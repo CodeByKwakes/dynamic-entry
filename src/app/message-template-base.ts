@@ -1,4 +1,4 @@
-import { Input } from '@angular/core';
+import { Input, Output, EventEmitter } from '@angular/core';
 export class MessageTemplateBase {
   private _message: string;
   public get message(): string {
@@ -8,4 +8,5 @@ export class MessageTemplateBase {
   public set message(value: string) {
     this._message = value || '';
   }
+  @Output() clicked: EventEmitter<string> = new EventEmitter<string>();
 }

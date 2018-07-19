@@ -18,6 +18,7 @@ export class AppComponent {
     const factory = this.resolver.resolveComponentFactory<MessageTemplateBase>(MessageComponent);
     this.componentRef = this.entry.createComponent(factory);
     this.componentRef.instance.message = message;
+    this.componentRef.instance.clicked.subscribe(value => console.log('clicked value', value));
   }
 
   destoryComponent() {
