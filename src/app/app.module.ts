@@ -13,6 +13,7 @@ import { MessageComponent } from './message/message.component';
     BrowserModule
   ],
   providers: [],
+  entryComponents: [MessageComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
