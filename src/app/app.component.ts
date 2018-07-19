@@ -10,5 +10,7 @@ export class AppComponent {
   parentMsg = 'Hello im working';
   constructor() { }
 
-
+  onMessageChange() {
+    this.parentMsg = 'i have change via a click';
+  }
 }
