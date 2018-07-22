@@ -1,3 +1,4 @@
+import { MessageEntryDirective } from './../message-entry.directive';
 import {
   Component, OnInit, Input,
   Output, EventEmitter, ViewChild, ViewContainerRef, ComponentRef, ComponentFactoryResolver, OnChanges
@@ -13,7 +14,8 @@ import { MessageComponent } from '../message/message.component';
 export class MessageItemComponent implements OnInit, OnChanges {
   @Input() message: string;
   @Output() clicked: EventEmitter<string> = new EventEmitter<string>();
-  @ViewChild('messagecontainer', { read: ViewContainerRef }) entry: ViewContainerRef;
+  // @ViewChild('messagecontainer', { read: ViewContainerRef }) entry: ViewContainerRef;
+  @ViewChild(MessageEntryDirective) entry: MessageEntryDirective;
   componentRef: ComponentRef<MessageTemplateBase>;
 
   constructor(private resolver: ComponentFactoryResolver) { }
@@ -30,9 +32,9 @@ export class MessageItemComponent implements OnInit, OnChanges {
   }
 
   createComponent() {
-    this.entry.clear();
+    this.entry.viewContainer.clear();
     const factory = this.resolver.resolveComponentFactory<MessageTemplateBase>(MessageComponent);
-    this.componentRef = this.entry.createComponent(factory);
+    this.componentRef = this.entry.viewContainer.createComponent(factory);
     this.componentRef.instance.message = this.message;
     this.componentRef.instance.clicked = this.clicked;
   }
