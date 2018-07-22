@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MessageTemplateBase } from './../message-template-base';
+import { MessageTemplateBase } from '../message-template-base';
 
 @Component({
   selector: 'app-message',

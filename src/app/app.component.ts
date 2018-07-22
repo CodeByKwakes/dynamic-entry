@@ -1,6 +1,4 @@
-import { MessageTemplateBase } from './message-template-base';
-import { Component, ViewChild, ViewContainerRef, ComponentFactoryResolver, ComponentRef } from '@angular/core';
-import { MessageComponent } from './message/message.component';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,19 +7,10 @@ import { MessageComponent } from './message/message.component';
 })
 export class AppComponent {
   title = 'app';
-  componentRef: ComponentRef<MessageTemplateBase>;
-  @ViewChild('messagecontainer', { read: ViewContainerRef }) entry: ViewContainerRef;
-  constructor(private resolver: ComponentFactoryResolver) { }
+  parentMsg = 'Hello im working';
+  constructor() { }
 
-  createComponent(message?: string) {
-    this.entry.clear();
-    const factory = this.resolver.resolveComponentFactory<MessageTemplateBase>(MessageComponent);
-    this.componentRef = this.entry.createComponent(factory);
-    this.componentRef.instance.message = message;
-    this.componentRef.instance.clicked.subscribe(value => console.log('clicked value', value));
-  }
-
-  destoryComponent() {
-    this.componentRef.destroy();
+  onMessageChange(event) {
+    this.parentMsg = event;
   }
 }
