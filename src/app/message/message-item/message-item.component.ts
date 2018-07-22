@@ -14,7 +14,6 @@ import { MessageComponent } from '../message/message.component';
 export class MessageItemComponent implements OnInit, OnChanges {
   @Input() message: string;
   @Output() clicked: EventEmitter<string> = new EventEmitter<string>();
-  // @ViewChild('messagecontainer', { read: ViewContainerRef }) entry: ViewContainerRef;
   @ViewChild(MessageEntryDirective) entry: MessageEntryDirective;
   componentRef: ComponentRef<MessageTemplateBase>;
 
