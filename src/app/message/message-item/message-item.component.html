@@ -1,1 +1,3 @@
-<ng-container appMessageEntry></ng-container>
+<ng-container appMessageEntry
+              [message]="message"
+              (clicked)="clicked.emit($event)"></ng-container>
